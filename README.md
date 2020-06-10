@@ -1,4 +1,4 @@
-# neobis-online-store
+# online-store
 Online Book Store
 
 **uml diagram:**
