@@ -2,5 +2,5 @@
 Online Book Store
 
 **uml diagram:**
-![uml diagram image](images/dbdesigner.png)
+![uml diagram image](images/dbdesigner1.png)
 
