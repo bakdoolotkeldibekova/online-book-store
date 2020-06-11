@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -19,8 +17,8 @@ public class Role extends BaseEntity {
     @Column(name = "role_name", nullable = false)
     private String roleName;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "user_account_id", nullable = false)
-    private Set<UserAccount> userAccounts = new HashSet<>();
+    private UserAccount userAccount;
 
 }
