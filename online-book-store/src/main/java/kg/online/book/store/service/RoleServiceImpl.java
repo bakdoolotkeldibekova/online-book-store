@@ -13,7 +13,7 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleRepository roleRepository;
-    
+
     @Autowired
     private UserAccountService userAccountService;
 
