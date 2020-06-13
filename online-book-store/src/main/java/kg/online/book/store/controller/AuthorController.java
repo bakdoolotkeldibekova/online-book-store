@@ -28,7 +28,7 @@ public class AuthorController {
         return authorService.getAll();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public Author deleteById(@PathVariable Long id){
         return authorService.deleteById(id);
     }
