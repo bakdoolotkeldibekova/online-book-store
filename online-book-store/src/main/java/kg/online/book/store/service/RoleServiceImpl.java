@@ -1,6 +1,5 @@
 package kg.online.book.store.service;
 
-import kg.online.book.store.dto.RoleDTO;
 import kg.online.book.store.entity.Role;
 import kg.online.book.store.entity.UserAccount;
 import kg.online.book.store.repository.RoleRepository;
@@ -14,19 +13,9 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private UserAccountService userAccountService;
-
     @Override
-    public Role create(RoleDTO roleDTO) {
-        UserAccount userAccount = userAccountService.getById(roleDTO.getUserAccountId());
-        if(userAccount != null){
-            Role role = new Role();
-            role.setRoleName(roleDTO.getRoleName());
-            role.setUserAccount(userAccount);
-            return roleRepository.save(role);
-        }
-        return null;
+    public Role create(Role role) {
+        return roleRepository.save(role);
     }
 
     @Override

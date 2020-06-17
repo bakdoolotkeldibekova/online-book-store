@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class RoleDTO {
-    private String roleName;
-    private Long userAccountId;
+public class UserAccountAuthDTO {
+    private String login;
+    private String password;
 }

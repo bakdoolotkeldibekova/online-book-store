@@ -1,8 +1,10 @@
 package kg.online.book.store.service;
 
+import kg.online.book.store.entity.Role;
 import kg.online.book.store.entity.UserAccount;
 import kg.online.book.store.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +13,16 @@ import java.util.List;
 public class UserAccountServiceImpl implements UserAccountService {
     @Autowired
     private UserAccountRepository userAccountRepository;
+    @Autowired
+    private PasswordEncoder encoder;
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public UserAccount create(UserAccount userAccount) {
+        userAccount.setPassword(encoder.encode(userAccount.getPassword()));
+//        Role role = roleService.getById(1L);
+//        userAccount.setRole(role);
         return userAccountRepository.save(userAccount);
     }
 
