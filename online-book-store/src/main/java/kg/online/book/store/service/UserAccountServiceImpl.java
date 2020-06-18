@@ -1,5 +1,6 @@
 package kg.online.book.store.service;
 
+import kg.online.book.store.entity.Cart;
 import kg.online.book.store.entity.Role;
 import kg.online.book.store.entity.UserAccount;
 import kg.online.book.store.repository.UserAccountRepository;
@@ -17,18 +18,28 @@ public class UserAccountServiceImpl implements UserAccountService {
     private PasswordEncoder encoder;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private CartService cartService;
 
     @Override
     public UserAccount create(UserAccount userAccount) {
+        Cart cart = new Cart();
+        cart.setUserAccount(userAccount);
+        cartService.create(cart);
+
         userAccount.setPassword(encoder.encode(userAccount.getPassword()));
-//        Role role = roleService.getById(1L);
-//        userAccount.setRole(role);
+        Role role = roleService.getById(1L);
+        userAccount.setRole(role);
         return userAccountRepository.save(userAccount);
     }
 
     @Override
     public UserAccount deleteById(Long id) {
         UserAccount userAccount = getById(id);
+        if(userAccount != null){
+            Cart cart = cartService.getByUserAccount(userAccount);
+            cartService.deleteById(cart.getId());
+        }
         userAccountRepository.deleteById(id);
         return userAccount;
     }
@@ -42,4 +53,10 @@ public class UserAccountServiceImpl implements UserAccountService {
     public UserAccount getById(Long id) {
         return userAccountRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public UserAccount getByLogin(String login) {
+        return userAccountRepository.findByLogin(login);
+    }
+
 }

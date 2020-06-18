@@ -10,4 +10,5 @@ public interface UserAccountService {
     List<UserAccount> getAll();
     UserAccount getById(Long id);
 
+    UserAccount getByLogin(String login);
 }

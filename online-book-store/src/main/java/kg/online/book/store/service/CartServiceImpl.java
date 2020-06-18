@@ -1,6 +1,5 @@
 package kg.online.book.store.service;
 
-import kg.online.book.store.dto.CartDTO;
 import kg.online.book.store.entity.Cart;
 import kg.online.book.store.entity.UserAccount;
 import kg.online.book.store.repository.CartRepository;
@@ -14,16 +13,8 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    @Autowired
-    private UserAccountService userAccountService;
-
     @Override
-    public Cart create(CartDTO cartDTO) {
-        UserAccount userAccount = userAccountService.getById(cartDTO.getUserAccountId());
-        if(userAccount == null) return null;
-
-        Cart cart = new Cart();
-        cart.setUserAccount(userAccount);
+    public Cart create(Cart cart) {
         return cartRepository.save(cart);
     }
 
@@ -42,5 +33,10 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<Cart> getAll() {
         return cartRepository.findAll();
+    }
+
+    @Override
+    public Cart getByUserAccount(UserAccount userAccount) {
+        return cartRepository.findByUserAccount(userAccount);
     }
 }

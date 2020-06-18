@@ -4,6 +4,7 @@ import kg.online.book.store.dto.CartItemDTO;
 import kg.online.book.store.entity.Cart;
 import kg.online.book.store.entity.CartItem;
 import kg.online.book.store.entity.Product;
+import kg.online.book.store.entity.UserAccount;
 import kg.online.book.store.repository.CartItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,17 +22,24 @@ public class CartItemServiceImpl implements CartItemService {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private UserAccountService userAccountService;
+
     @Override
     public CartItem create(CartItemDTO cartItemDTO) {
-        Cart cart = cartService.getById(cartItemDTO.getCartId());
-        Product product = productService.getById(cartItemDTO.getProductId());
-        if (cart == null || product == null) return null;
+        UserAccount userAccount = userAccountService.getById(cartItemDTO.getUserId());
+        if(userAccount != null){
+            Cart cart = cartService.getByUserAccount(userAccount);
+            Product product = productService.getById(cartItemDTO.getProductId());
+            if (cart == null || product == null) return null;
 
-        CartItem cartItem = new CartItem();
-        cartItem.setCart(cart);
-        cartItem.setProduct(product);
-        cartItem.setQuantity(cartItemDTO.getQuantity());
-        return cartItemRepository.save(cartItem);
+            CartItem cartItem = new CartItem();
+            cartItem.setCart(cart);
+            cartItem.setProduct(product);
+            cartItem.setQuantity(cartItemDTO.getQuantity());
+            return cartItemRepository.save(cartItem);
+        }
+        return null;
     }
 
     @Override
@@ -49,5 +57,16 @@ public class CartItemServiceImpl implements CartItemService {
     @Override
     public List<CartItem> getAll() {
         return cartItemRepository.findAll();
+    }
+
+    @Override
+    public List<CartItem> getAllMine(String login) {
+        UserAccount userAccount = userAccountService.getByLogin(login);
+        if (userAccount == null) return null;
+
+        Cart cart = cartService.getByUserAccount(userAccount);
+        if (cart == null) return null;
+
+        return cartItemRepository.findAllByCart(cart);
     }
 }

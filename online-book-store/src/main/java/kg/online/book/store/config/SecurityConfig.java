@@ -5,6 +5,7 @@ import kg.online.book.store.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,6 +35,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/api/user/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/author").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/author/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/author").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/api/image/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/image/**").permitAll()
+
+                .antMatchers(HttpMethod.GET,"/api/product").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/api/genre").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/genre/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/author").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/api/cart_item").hasRole("ADMIN")
+
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
