@@ -1,9 +1,7 @@
 package kg.online.book.store.service;
 
 import kg.online.book.store.dto.OrderedProductDTO;
-import kg.online.book.store.entity.Order;
-import kg.online.book.store.entity.OrderedProduct;
-import kg.online.book.store.entity.Product;
+import kg.online.book.store.entity.*;
 import kg.online.book.store.repository.OrderedProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +18,9 @@ public class OrderedProductServiceImpl implements OrderedProductService {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private UserAccountService userAccountService;
 
     @Override
     public OrderedProduct create(OrderedProductDTO orderedProductDTO) {
@@ -47,7 +48,18 @@ public class OrderedProductServiceImpl implements OrderedProductService {
     }
 
     @Override
-    public List<OrderedProduct> gtAll() {
+    public List<OrderedProduct> getAll() {
         return orderedProductRepository.findAll();
+    }
+
+    @Override
+    public List<OrderedProduct> getAllMine(String login) {
+        UserAccount userAccount = userAccountService.getByLogin(login);
+        if (userAccount == null) return null;
+
+        Order order = orderService.getByUserAccount(userAccount);
+        if (order == null) return null;
+
+        return orderedProductRepository.findAllByOrder(order);
     }
 }

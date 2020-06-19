@@ -2,7 +2,6 @@ package kg.online.book.store.controller;
 
 import kg.online.book.store.entity.DeliveryMethod;
 import kg.online.book.store.service.DeliveryMethodService;
-import org.hibernate.annotations.GeneratorType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

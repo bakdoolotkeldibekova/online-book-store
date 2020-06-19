@@ -9,5 +9,7 @@ public interface OrderedProductService {
     OrderedProduct create(OrderedProductDTO orderedProductDTO);
     OrderedProduct deleteById(Long id);
     OrderedProduct getById(Long id);
-    List<OrderedProduct> gtAll();
+    List<OrderedProduct> getAll();
+
+    List<OrderedProduct> getAllMine(String login);
 }
