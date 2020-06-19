@@ -50,6 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET, "/api/cart_item").hasRole("ADMIN")
 
+                .antMatchers(HttpMethod.POST, "/api/delivery_method").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/delivery_method").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/author").permitAll()
+
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
