@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class BillDTO {
-    private double totalCost;
-    private boolean payed = false;
-    private Long orderId;
+public class UserAccountDTO {
+    private String name;
+    private String email;
+    private String login;
+    private String password;
+    private boolean active;
 }

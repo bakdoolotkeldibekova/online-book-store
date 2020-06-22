@@ -34,4 +34,14 @@ public class ProductController {
         return productService.deleteById(id);
     }
 
+    @PutMapping("/isAvailable/{productId}")
+    public Product changeAvailable(@PathVariable Long productId, @RequestBody Boolean isAvailable){
+        return productService.changeAvailable(productId, isAvailable);
+    }
+
+    @PutMapping("/discount/{productId}")
+    public Product changeDiscount(@PathVariable Long productId, @RequestBody Integer discount){
+        return productService.changeDiscount(productId, discount);
+    }
+
 }

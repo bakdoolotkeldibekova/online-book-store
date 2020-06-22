@@ -28,6 +28,16 @@ public class AuthorController {
         return authorService.getAll();
     }
 
+    @GetMapping("/biography")
+    public List<Author> getAllByBiography(@RequestBody String biography){
+        return authorService.getAllByBiography(biography);
+    }
+
+    @GetMapping("/name")
+    public List<Author> getAllByName(@RequestBody String name){
+        return authorService.getAllByName(name);
+    }
+
     @DeleteMapping("/{id}")
     public Author deleteById(@PathVariable Long id){
         return authorService.deleteById(id);

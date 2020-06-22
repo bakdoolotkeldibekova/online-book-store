@@ -1,6 +1,5 @@
 package kg.online.book.store.service;
 
-import kg.online.book.store.dto.BillDTO;
 import kg.online.book.store.entity.Bill;
 import kg.online.book.store.entity.Order;
 import kg.online.book.store.repository.BillRepository;
@@ -18,14 +17,16 @@ public class BillServiceImpl implements BillService {
     private OrderService orderService;
 
     @Override
-    public Bill create(BillDTO billDTO) {
-        Order order = orderService.getById(billDTO.getOrderId());
-        if(order == null) return null;
+    public Bill create(Bill bill) {
+        return billRepository.save(bill);
+    }
 
-        Bill bill = new Bill();
-        bill.setOrder(order);
-        bill.setPayed(billDTO.isPayed());
-        bill.setTotalCost(billDTO.getTotalCost());
+    @Override
+    public Bill updatePayed(Long billId, Boolean payed) {
+        Bill bill = getById(billId);
+        if (bill == null) return  null;
+
+        bill.setPayed(payed);
         return billRepository.save(bill);
     }
 
@@ -44,5 +45,21 @@ public class BillServiceImpl implements BillService {
     @Override
     public List<Bill> getAll() {
         return billRepository.findAll();
+    }
+
+    @Override
+    public List<Bill> getAllByTotalCostBetween(Double a, Double b) {
+        return billRepository.findAllByTotalCostBetween(a, b);
+    }
+
+    @Override
+    public List<Bill> getAllByPayed(Boolean payed) {
+        return billRepository.findAllByPayed(payed);
+    }
+
+    @Override
+    public Bill getByUserLogin(String login) {
+        Order order = orderService.getByLogin(login);
+        return billRepository.findByOrder(order);
     }
 }

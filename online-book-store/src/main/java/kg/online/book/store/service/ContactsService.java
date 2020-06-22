@@ -6,8 +6,11 @@ import kg.online.book.store.entity.Contacts;
 import java.util.List;
 
 public interface ContactsService {
-    Contacts create(ContactsDTO contactsDTO);
-    Contacts deleteById(Long id);
+    Contacts create(String login, ContactsDTO contactsDTO);
+    Contacts update(String login, ContactsDTO contactsDTO);
+    Contacts deleteById(String login, Long id);
     Contacts getById(Long id);
     List<Contacts> getAll();
+
+    Contacts getByUserLogin(String login);
 }

@@ -16,8 +16,8 @@ public class CartItemController {
     private CartItemService cartItemService;
 
     @PostMapping
-    public CartItem create(@RequestBody CartItemDTO cartItemDTO){
-        return cartItemService.create(cartItemDTO);
+    public CartItem create(Principal principal, @RequestBody CartItemDTO cartItemDTO){
+        return cartItemService.create(principal.getName(), cartItemDTO);
     }
 
     @GetMapping
@@ -36,7 +36,7 @@ public class CartItemController {
     }
 
     @DeleteMapping("/{id}")
-    public CartItem deleteById(@PathVariable Long id){
-        return cartItemService.deleteById(id);
+    public CartItem deleteById(Principal principal, @PathVariable Long id){
+        return cartItemService.deleteById(principal.getName(), id);
     }
 }

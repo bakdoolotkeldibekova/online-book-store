@@ -35,24 +35,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/api/user/**").hasRole("ADMIN")
+
                 .antMatchers(HttpMethod.POST, "/api/author").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/author/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/author").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/author/**").permitAll()
 
                 .antMatchers(HttpMethod.POST, "/api/image/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/image/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/image/hello").permitAll()
 
                 .antMatchers(HttpMethod.GET,"/api/product").permitAll()
+                .antMatchers(HttpMethod.PUT,"/api/product/isAvailable").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/product/discount").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/product").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/product/**").hasRole("ADMIN")
 
                 .antMatchers(HttpMethod.POST, "/api/genre").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/genre/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/author").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/genre").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/api/cart_item").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/cart_item/mine").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/api/cart_item/**").hasRole("ADMIN")
 
                 .antMatchers(HttpMethod.POST, "/api/delivery_method").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/delivery_method").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/author").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/delivery_method").permitAll()
 
                 .antMatchers(HttpMethod.POST, "/api/payment_method").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/payment_method").hasRole("ADMIN")
@@ -64,6 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET, "/api/order").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/order/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/order/user_acc").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/order/products_cost").hasRole("ADMIN")
+
+                .antMatchers("/api/bill/**").hasRole("ADMIN")
 
                 .anyRequest().authenticated()
                 .and().exceptionHandling()

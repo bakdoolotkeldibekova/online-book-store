@@ -9,4 +9,7 @@ public interface AuthorService {
     Author deleteById(Long id);
     Author getById(Long id);
     List<Author> getAll();
+
+    List<Author> getAllByName(String name);
+    List<Author> getAllByBiography(String biography);
 }

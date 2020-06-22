@@ -12,5 +12,4 @@ public class ContactsDTO {
     private String phone;
     private String address;
     private String cityAndRegion;
-    private Long userAccountId;
 }

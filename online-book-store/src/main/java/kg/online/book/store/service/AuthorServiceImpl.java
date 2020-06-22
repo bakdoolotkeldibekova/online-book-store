@@ -33,4 +33,15 @@ public class AuthorServiceImpl implements AuthorService {
     public List<Author> getAll() {
         return authorRepository.findAll();
     }
+
+    @Override
+    public List<Author> getAllByName(String name) {
+        return authorRepository.findAllByNameContainingIgnoringCase(name);
+    }
+
+    @Override
+    public List<Author> getAllByBiography(String biography) {
+        return authorRepository.findAllByBiographyContainingIgnoringCase(biography);
+    }
+
 }

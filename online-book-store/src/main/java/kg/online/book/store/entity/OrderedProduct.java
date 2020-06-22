@@ -15,10 +15,6 @@ import javax.persistence.*;
 public class OrderedProduct extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "customer_order_id")
-    private Order order;
-
-    @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 

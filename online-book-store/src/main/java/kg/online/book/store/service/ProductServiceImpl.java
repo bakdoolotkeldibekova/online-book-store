@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
             product.setGenreSet(productDTO.getGenreSet());
             product.setName(productDTO.getName());
             product.setPrice(productDTO.getPrice());
+            product.setDiscount(productDTO.getDiscount());
             return productRepository.save(product);
         }
         return null;
@@ -48,5 +49,26 @@ public class ProductServiceImpl implements ProductService {
         Product product = getById(id);
         productRepository.deleteById(id);
         return product;
+    }
+
+    @Override
+    public Product changeAvailable(Long productId, Boolean isAvailable) {
+        Product product = getById(productId);
+        if(product == null) return null;
+
+        product.setAvailable(isAvailable);
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Product changeDiscount(Long productId, Integer discount) {
+        Product product = getById(productId);
+        if(product == null) return null;
+
+        if(discount <= 100 && discount >= 0){
+            product.setDiscount(discount);
+        }
+
+        return productRepository.save(product);
     }
 }

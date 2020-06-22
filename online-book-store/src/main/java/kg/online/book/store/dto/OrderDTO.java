@@ -1,16 +1,18 @@
 package kg.online.book.store.dto;
 
+import kg.online.book.store.entity.OrderedProduct;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class OrderDTO {
-    private double productsCost;
     private Long deliveryMethodId;
     private Long paymentMethodId;
-    private Long userAccountId;
+    private List<OrderedProduct> orderedProductList;
 }

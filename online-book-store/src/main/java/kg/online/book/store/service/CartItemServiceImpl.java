@@ -26,8 +26,8 @@ public class CartItemServiceImpl implements CartItemService {
     private UserAccountService userAccountService;
 
     @Override
-    public CartItem create(CartItemDTO cartItemDTO) {
-        UserAccount userAccount = userAccountService.getById(cartItemDTO.getUserId());
+    public CartItem create(String login, CartItemDTO cartItemDTO) {
+        UserAccount userAccount = userAccountService.getByLogin(login);
         if(userAccount != null){
             Cart cart = cartService.getByUserAccount(userAccount);
             Product product = productService.getById(cartItemDTO.getProductId());
@@ -43,8 +43,12 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public CartItem deleteById(Long id) {
+    public CartItem deleteById(String login, Long id) {
         CartItem cartItem = getById(id);
+        Cart cart = cartService.getByUserAccount(userAccountService.getByLogin(login));
+        if (!cart.equals(cartItem.getCart()))
+            return null;
+
         cartItemRepository.deleteById(id);
         return cartItem;
     }

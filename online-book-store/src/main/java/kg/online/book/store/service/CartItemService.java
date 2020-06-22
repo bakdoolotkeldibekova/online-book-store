@@ -7,8 +7,8 @@ import kg.online.book.store.entity.CartItem;
 import java.util.List;
 
 public interface CartItemService {
-    CartItem create(CartItemDTO cartItemDTO);
-    CartItem deleteById(Long id);
+    CartItem create(String login, CartItemDTO cartItemDTO);
+    CartItem deleteById(String login, Long id);
     CartItem getById(Long id);
     List<CartItem> getAll();
 

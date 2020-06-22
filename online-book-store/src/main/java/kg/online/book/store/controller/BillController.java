@@ -1,11 +1,11 @@
 package kg.online.book.store.controller;
 
-import kg.online.book.store.dto.BillDTO;
 import kg.online.book.store.entity.Bill;
 import kg.online.book.store.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -14,9 +14,9 @@ public class BillController {
     @Autowired
     private BillService billService;
 
-    @PostMapping
-    public Bill create(@RequestBody BillDTO billDTO){
-        return billService.create(billDTO);
+    @PutMapping
+    public Bill updatePayed(@RequestBody Long billId, @RequestBody Boolean payed){
+        return billService.updatePayed(billId, payed);
     }
 
     @GetMapping("/{id}")
@@ -33,4 +33,20 @@ public class BillController {
     public Bill deleteById(@PathVariable Long id){
         return billService.deleteById(id);
     }
+
+    @GetMapping("/total_cost")
+    public List<Bill> getAllByTotalCostBetween(@RequestBody Double a, @RequestBody Double b){
+        return billService.getAllByTotalCostBetween(a, b);
+    }
+
+    @GetMapping("/payed")
+    public List<Bill> getAllByPayed(@RequestBody Boolean payed){
+        return billService.getAllByPayed(payed);
+    }
+
+    @GetMapping("/user")
+    public Bill getByUserLogin(@RequestBody String userLogin){
+        return billService.getByUserLogin(userLogin);
+    }
+
 }

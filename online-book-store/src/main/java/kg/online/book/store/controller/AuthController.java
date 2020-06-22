@@ -1,6 +1,7 @@
 package kg.online.book.store.controller;
 
 import kg.online.book.store.dto.UserAccountAuthDTO;
+import kg.online.book.store.dto.UserAccountDTO;
 import kg.online.book.store.entity.UserAccount;
 import kg.online.book.store.service.UserAccountService;
 import kg.online.book.store.util.JwtUtil;
@@ -29,8 +30,8 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public UserAccount create(@RequestBody UserAccount userAccount) {
-        return userAccountService.create(userAccount);
+    public UserAccount create(@RequestBody UserAccountDTO userAccountDTO) {
+        return userAccountService.create(userAccountDTO);
     }
 
     @PostMapping("/auth")

@@ -14,22 +14,14 @@ public class OrderedProductServiceImpl implements OrderedProductService {
     private OrderedProductRepository orderedProductRepository;
 
     @Autowired
-    private OrderService orderService;
-
-    @Autowired
     private ProductService productService;
-
-    @Autowired
-    private UserAccountService userAccountService;
 
     @Override
     public OrderedProduct create(OrderedProductDTO orderedProductDTO) {
-        Order order = orderService.getById(orderedProductDTO.getOrderId());
         Product product = productService.getById(orderedProductDTO.getProductId());
-        if(order == null || product == null) return null;
+        if(product == null || !product.isAvailable()) return null;
 
         OrderedProduct orderedProduct = new OrderedProduct();
-        orderedProduct.setOrder(order);
         orderedProduct.setProduct(product);
         orderedProduct.setQuantity(orderedProductDTO.getQuantity());
         return orderedProductRepository.save(orderedProduct);
@@ -50,16 +42,5 @@ public class OrderedProductServiceImpl implements OrderedProductService {
     @Override
     public List<OrderedProduct> getAll() {
         return orderedProductRepository.findAll();
-    }
-
-    @Override
-    public List<OrderedProduct> getAllMine(String login) {
-        UserAccount userAccount = userAccountService.getByLogin(login);
-        if (userAccount == null) return null;
-
-        Order order = orderService.getByUserAccount(userAccount);
-        if (order == null) return null;
-
-        return orderedProductRepository.findAllByOrder(order);
     }
 }

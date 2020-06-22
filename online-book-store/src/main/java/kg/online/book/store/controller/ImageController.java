@@ -5,6 +5,7 @@ import kg.online.book.store.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -34,5 +35,11 @@ public class ImageController {
     public Image getById(@PathVariable Long id){
         return imageService.getById(id);
     }
+
+//    @GetMapping("/hello")
+//    public ModelAndView getPage(){
+//        ModelAndView mav = new ModelAndView("hello");
+//        return mav;
+//    }
 
 }

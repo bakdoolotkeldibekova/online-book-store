@@ -19,4 +19,5 @@ public class ProductDTO {
     private boolean available = true;
     private Set<Genre> genreSet = new HashSet<>();
     private Long authorId;
+    private Integer discount=0;
 }

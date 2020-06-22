@@ -7,10 +7,11 @@ import kg.online.book.store.entity.UserAccount;
 import java.util.List;
 
 public interface OrderService {
-    Order create(OrderDTO orderDTO);
+    Order create(String login, OrderDTO orderDTO);
     Order deleteById(Long id);
     Order getById(Long id);
     List<Order> getAll();
 
-    Order getByUserAccount(UserAccount userAccount);
+    Order getByLogin(String login);
+    List<Order> getAllByProductCostBetween(Double a, Double b);
 }

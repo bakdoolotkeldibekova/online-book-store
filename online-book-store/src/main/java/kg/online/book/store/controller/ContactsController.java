@@ -6,6 +6,7 @@ import kg.online.book.store.service.ContactsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -15,8 +16,8 @@ public class ContactsController {
     private ContactsService contactsService;
 
     @PostMapping
-    public Contacts create(@RequestBody ContactsDTO contactsDTO){
-        return contactsService.create(contactsDTO);
+    public Contacts create(Principal principal, @RequestBody ContactsDTO contactsDTO){
+        return contactsService.create(principal.getName(), contactsDTO);
     }
 
     @GetMapping
@@ -30,8 +31,17 @@ public class ContactsController {
     }
 
     @DeleteMapping("/{id}")
-    public Contacts deleteById(@PathVariable Long id){
-        return contactsService.deleteById(id);
+    public Contacts deleteById(Principal principal, @PathVariable Long id){
+        return contactsService.deleteById(principal.getName(), id);
     }
 
+    @GetMapping("/login")
+    public Contacts getByUserLogin(@RequestBody String login){
+        return contactsService.getByUserLogin(login);
+    }
+
+    @PutMapping
+    public Contacts update(Principal principal, @RequestBody ContactsDTO contactsDTO){
+        return contactsService.update(principal.getName(), contactsDTO);
+    }
 }

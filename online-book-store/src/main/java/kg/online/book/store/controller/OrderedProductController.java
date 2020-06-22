@@ -25,11 +25,6 @@ public class OrderedProductController {
         return orderedProductService.getAll();
     }
 
-    @GetMapping("/mine")
-    public List<OrderedProduct> getAllMine(Principal principal){
-        return orderedProductService.getAllMine(principal.getName());
-    }
-
     @GetMapping("/{id}")
     public OrderedProduct getById(@PathVariable Long id){
         return orderedProductService.getById(id);

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -37,5 +39,10 @@ public class Product extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
+
+    @Min(0)
+    @Max(100)
+    @Column(name = "discount")
+    private Integer discount=0;
 
 }

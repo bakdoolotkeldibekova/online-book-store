@@ -10,4 +10,7 @@ public interface ProductService {
     Product getById(Long id);
     List<Product> getAll();
     Product deleteById(Long id);
+
+    Product changeAvailable(Long productId, Boolean isAvailable);
+    Product changeDiscount(Long productId, Integer discount);
 }

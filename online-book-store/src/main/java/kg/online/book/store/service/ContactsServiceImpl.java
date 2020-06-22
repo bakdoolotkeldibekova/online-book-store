@@ -5,6 +5,7 @@ import kg.online.book.store.entity.Contacts;
 import kg.online.book.store.entity.UserAccount;
 import kg.online.book.store.repository.ContactsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public class ContactsServiceImpl implements ContactsService {
     private UserAccountService userAccountService;
 
     @Override
-    public Contacts create(ContactsDTO contactsDTO) {
-        UserAccount userAccount = userAccountService.getById(contactsDTO.getUserAccountId());
+    public Contacts create(String login, ContactsDTO contactsDTO) {
+        UserAccount userAccount = userAccountService.getByLogin(login);
         if(userAccount == null) return null;
 
         Contacts contacts = new Contacts();
@@ -31,8 +32,20 @@ public class ContactsServiceImpl implements ContactsService {
     }
 
     @Override
-    public Contacts deleteById(Long id) {
+    public Contacts update(String login, ContactsDTO contactsDTO) {
+        Contacts contacts = getByUserLogin(login);
+        contacts.setPhone(contactsDTO.getPhone());
+        contacts.setAddress(contactsDTO.getAddress());
+        contacts.setCityAndRegion(contactsDTO.getCityAndRegion());
+        return contactsRepository.save(contacts);
+    }
+
+    @Override
+    public Contacts deleteById(String login, Long id) {
+        UserAccount userAccount = userAccountService.getByLogin(login);
         Contacts contacts = getById(id);
+        if (!contacts.getUserAccount().equals(userAccount))
+            return null;
         contactsRepository.deleteById(id);
         return contacts;
     }
@@ -45,5 +58,13 @@ public class ContactsServiceImpl implements ContactsService {
     @Override
     public List<Contacts> getAll() {
         return contactsRepository.findAll();
+    }
+
+    @Override
+    public Contacts getByUserLogin(String login) {
+        UserAccount userAccount = userAccountService.getByLogin(login);
+        if(userAccount == null) return null;
+
+        return contactsRepository.findByUserAccount(userAccount);
     }
 }

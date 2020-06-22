@@ -1,5 +1,6 @@
 package kg.online.book.store.service;
 
+import kg.online.book.store.dto.UserAccountDTO;
 import kg.online.book.store.entity.Cart;
 import kg.online.book.store.entity.Role;
 import kg.online.book.store.entity.UserAccount;
@@ -22,15 +23,35 @@ public class UserAccountServiceImpl implements UserAccountService {
     private CartService cartService;
 
     @Override
-    public UserAccount create(UserAccount userAccount) {
+    public UserAccount create(UserAccountDTO userAccountDTO) {
+        UserAccount userAccount = new UserAccount();
+        userAccount.setName(userAccountDTO.getName());
+        userAccount.setEmail(userAccountDTO.getEmail());
+        userAccount.setPassword(encoder.encode(userAccountDTO.getPassword()));
+        userAccount.setLogin(userAccountDTO.getLogin());
+        userAccount.setActive(userAccountDTO.isActive());
+        Role role = roleService.getById(1L);
+        userAccount.setRole(role);
+
+        userAccountRepository.save(userAccount);
+
         Cart cart = new Cart();
         cart.setUserAccount(userAccount);
         cartService.create(cart);
 
+        return userAccount;
+    }
+
+    @Override
+    public UserAccount create(UserAccount userAccount) {
         userAccount.setPassword(encoder.encode(userAccount.getPassword()));
-        Role role = roleService.getById(1L);
-        userAccount.setRole(role);
-        return userAccountRepository.save(userAccount);
+        userAccountRepository.save(userAccount);
+
+        Cart cart = new Cart();
+        cart.setUserAccount(userAccount);
+        cartService.create(cart);
+
+        return userAccount;
     }
 
     @Override

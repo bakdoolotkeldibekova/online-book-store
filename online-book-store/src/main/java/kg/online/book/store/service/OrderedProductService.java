@@ -10,6 +10,4 @@ public interface OrderedProductService {
     OrderedProduct deleteById(Long id);
     OrderedProduct getById(Long id);
     List<OrderedProduct> getAll();
-
-    List<OrderedProduct> getAllMine(String login);
 }
