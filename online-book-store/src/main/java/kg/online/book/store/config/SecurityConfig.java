@@ -42,11 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.POST, "/api/image/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/image/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/image/hello").permitAll()
 
                 .antMatchers(HttpMethod.GET,"/api/product").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/product/isAvailable").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT,"/api/product/discount").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/product/image").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/api/product").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/api/product/**").hasRole("ADMIN")
 

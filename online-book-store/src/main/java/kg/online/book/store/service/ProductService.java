@@ -1,8 +1,10 @@
 package kg.online.book.store.service;
 
 import kg.online.book.store.dto.ProductDTO;
+import kg.online.book.store.entity.Image;
 import kg.online.book.store.entity.Product;
 
+import java.awt.*;
 import java.util.List;
 
 public interface ProductService {
@@ -13,4 +15,5 @@ public interface ProductService {
 
     Product changeAvailable(Long productId, Boolean isAvailable);
     Product changeDiscount(Long productId, Integer discount);
+    Product updateImage(Long productId, Image image);
 }

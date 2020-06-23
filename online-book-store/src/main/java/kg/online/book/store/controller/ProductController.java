@@ -1,10 +1,12 @@
 package kg.online.book.store.controller;
 
 import kg.online.book.store.dto.ProductDTO;
+import kg.online.book.store.entity.Image;
 import kg.online.book.store.entity.Product;
 import kg.online.book.store.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -42,6 +44,11 @@ public class ProductController {
     @PutMapping("/discount/{productId}")
     public Product changeDiscount(@PathVariable Long productId, @RequestBody Integer discount){
         return productService.changeDiscount(productId, discount);
+    }
+
+    @PutMapping("/image/{productId}")
+    public Product updateImage(@PathVariable Long productId, @RequestBody Image image){
+        return productService.updateImage(productId, image);
     }
 
 }

@@ -25,10 +25,7 @@ public class ImageServiceImpl implements ImageService {
     private ProductService productService;
 
     @Override
-    public Image create(MultipartFile multipartFile, Long productId) {
-        Product product = productService.getById(productId);
-        if(product == null) return null;
-
+    public Image create(MultipartFile multipartFile) {
         final String urlKey = "cloudinary://119264965729773:1qhca12iztxCm0Df0nSBYtsIRF4@bagdash/"; //в конце добавляем '/'
         Image image = new Image();
         File file;
@@ -43,9 +40,7 @@ public class ImageServiceImpl implements ImageService {
             image.setName((String) uploadResult.get("public_id"));
             image.setUrl((String) uploadResult.get("url"));
             image.setFormat((String) uploadResult.get("format"));
-            image.setProduct(product);
-
-            return imageRepository.save(image);
+             return imageRepository.save(image);
         }catch (IOException e){
             System.out.println(e.getMessage());
             return null;

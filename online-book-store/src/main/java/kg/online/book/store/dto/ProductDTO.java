@@ -1,6 +1,7 @@
 package kg.online.book.store.dto;
 
 import kg.online.book.store.entity.Genre;
+import kg.online.book.store.entity.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,5 @@ public class ProductDTO {
     private List<Genre> genreList = new ArrayList<>();
     private Long authorId;
     private Integer discount=0;
+    private Image image;
 }

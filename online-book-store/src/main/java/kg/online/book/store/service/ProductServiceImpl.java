@@ -2,6 +2,7 @@ package kg.online.book.store.service;
 
 import kg.online.book.store.dto.ProductDTO;
 import kg.online.book.store.entity.Author;
+import kg.online.book.store.entity.Image;
 import kg.online.book.store.entity.Product;
 import kg.online.book.store.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private AuthorService authorService;
 
+    @Autowired
+    private ImageService imageService;
+
     @Override
     public Product create(ProductDTO productDTO) {
         Author author = authorService.getById(productDTO.getAuthorId());
@@ -29,6 +33,7 @@ public class ProductServiceImpl implements ProductService {
             product.setName(productDTO.getName());
             product.setPrice(productDTO.getPrice());
             product.setDiscount(productDTO.getDiscount());
+            product.setImage(productDTO.getImage());
             return productRepository.save(product);
         }
         return null;
@@ -47,7 +52,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product deleteById(Long id) {
         Product product = getById(id);
-        productRepository.deleteById(id);
+        if(product != null){
+            imageService.deleteByName(product.getImage().getName());
+        }
+       productRepository.deleteById(id);
         return product;
     }
 
@@ -69,6 +77,15 @@ public class ProductServiceImpl implements ProductService {
             product.setDiscount(discount);
         }
 
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Product updateImage(Long productId, Image image) {
+        Product product = getById(productId);
+        if(product == null) return null;
+
+        product.setImage(image);
         return productRepository.save(product);
     }
 }

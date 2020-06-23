@@ -45,4 +45,8 @@ public class Product extends BaseEntity {
     @Column(name = "discount")
     private Integer discount=0;
 
+    @OneToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
+
 }

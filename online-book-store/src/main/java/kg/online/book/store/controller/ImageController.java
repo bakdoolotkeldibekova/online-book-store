@@ -15,10 +15,9 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-    @PostMapping("/{productId}")
-    public Image create(@RequestParam(name = "file")MultipartFile multipartFile,  //больше одного RequestParam нельзя, когда MultipartFile
-                        @PathVariable Long productId){
-        return imageService.create(multipartFile, productId);
+    @PostMapping
+    public Image create(@RequestParam(name = "file")MultipartFile multipartFile){  //больше одного RequestParam нельзя, когда MultipartFile
+        return imageService.create(multipartFile);
     }
 
     @PostMapping("/destroy/{name}") //localhost:8080/image/destroy/{name}
@@ -35,11 +34,5 @@ public class ImageController {
     public Image getById(@PathVariable Long id){
         return imageService.getById(id);
     }
-
-//    @GetMapping("/hello")
-//    public ModelAndView getPage(){
-//        ModelAndView mav = new ModelAndView("hello");
-//        return mav;
-//    }
 
 }
