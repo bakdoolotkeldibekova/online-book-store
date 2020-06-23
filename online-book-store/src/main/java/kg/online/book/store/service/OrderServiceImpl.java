@@ -27,6 +27,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private BillService billService;
 
+    @Autowired
+    private MailService mailService;
+
     @Override
     public Order create(String login, OrderDTO orderDTO) {
         DeliveryMethod deliveryMethod = deliveryMethodService.getById(orderDTO.getDeliveryMethodId());
@@ -47,10 +50,18 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setProductsCost(productsCost);
 
+        order = orderRepository.save(order);
         Bill bill = new Bill(productsCost+deliveryMethod.getDeliveryCost(), false, order);
         billService.create(bill);
 
-        return orderRepository.save(order);
+        mailService.send(userAccount.getEmail(),
+                "ONLINE BOOK STORE: Your order is accepted!",
+                "Dear " + userAccount.getName() + ", \nyou ordered : "
+                        + order.getOrderedProductList()
+                        + "\n product cost: " + productsCost
+                        + "\n delivery method: " + deliveryMethod);
+
+        return order;
     }
 
     @Override

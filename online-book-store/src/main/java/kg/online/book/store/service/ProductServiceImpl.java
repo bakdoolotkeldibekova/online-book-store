@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
             product.setAuthor(author);
             product.setAvailable(productDTO.isAvailable());
             product.setDescription(productDTO.getDescription());
-            product.setGenreSet(productDTO.getGenreSet());
+            product.setGenreList(productDTO.getGenreList());
             product.setName(productDTO.getName());
             product.setPrice(productDTO.getPrice());
             product.setDiscount(productDTO.getDiscount());

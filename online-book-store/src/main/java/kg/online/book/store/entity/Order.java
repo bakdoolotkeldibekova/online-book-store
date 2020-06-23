@@ -34,7 +34,7 @@ public class Order extends BaseEntity {
     private UserAccount userAccount;
 
     @OneToMany
-    @JoinColumn(name = "ordered_product_id",nullable  = false)
+    @JoinColumn(name = "ordered_product_id")
     private List<OrderedProduct> orderedProductList = new ArrayList<>();
 
 }

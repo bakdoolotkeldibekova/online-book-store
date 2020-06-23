@@ -34,7 +34,7 @@ public class Product extends BaseEntity {
 
     @ManyToMany
     @JoinColumn(name = "genre_id", nullable = false)
-    private Set<Genre> genreSet = new HashSet<>();
+    private List<Genre> genreList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)

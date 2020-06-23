@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -17,7 +19,7 @@ public class ProductDTO {
     private Double price;
     private String description;
     private boolean available = true;
-    private Set<Genre> genreSet = new HashSet<>();
+    private List<Genre> genreList = new ArrayList<>();
     private Long authorId;
     private Integer discount=0;
 }
