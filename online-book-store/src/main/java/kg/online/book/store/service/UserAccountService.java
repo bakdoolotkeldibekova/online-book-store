@@ -13,4 +13,5 @@ public interface UserAccountService {
     UserAccount getById(Long id);
 
     UserAccount getByLogin(String login);
+    UserAccount doAnActive(String login);
 }

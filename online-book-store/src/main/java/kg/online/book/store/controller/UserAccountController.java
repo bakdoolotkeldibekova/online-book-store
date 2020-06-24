@@ -23,4 +23,8 @@ public class UserAccountController {
         return userAccountService.getAll();
     }
 
+    @PutMapping
+    public UserAccount doAnActive(@RequestBody String login){
+        return userAccountService.doAnActive(login);
+    }
 }

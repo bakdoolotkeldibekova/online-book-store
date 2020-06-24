@@ -12,5 +12,4 @@ public class UserAccountDTO {
     private String email;
     private String login;
     private String password;
-    private boolean active;
 }

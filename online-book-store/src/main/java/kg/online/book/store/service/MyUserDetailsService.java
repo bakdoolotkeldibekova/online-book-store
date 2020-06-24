@@ -20,7 +20,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        UserAccount userAccount = userAccountRepository.findByLogin(login);
+        UserAccount userAccount = userAccountRepository.findByLoginAndActive(login, true);
         List<Role> roles = new ArrayList<>();
         roles.add(userAccount.getRole());
         return new User(userAccount.getLogin(), userAccount.getPassword(), roles);

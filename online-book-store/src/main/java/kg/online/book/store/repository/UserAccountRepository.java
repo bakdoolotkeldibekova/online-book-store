@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
     UserAccount findByLogin(String login);
+    UserAccount findByLoginAndActive(String login, Boolean active);
 }

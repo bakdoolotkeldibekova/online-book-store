@@ -29,7 +29,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         userAccount.setEmail(userAccountDTO.getEmail());
         userAccount.setPassword(encoder.encode(userAccountDTO.getPassword()));
         userAccount.setLogin(userAccountDTO.getLogin());
-        userAccount.setActive(userAccountDTO.isActive());
+        userAccount.setActive(true);
         Role role = roleService.getById(1L);
         userAccount.setRole(role);
 
@@ -78,6 +78,13 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccount getByLogin(String login) {
         return userAccountRepository.findByLogin(login);
+    }
+
+    @Override
+    public UserAccount doAnActive(String login) {
+        UserAccount userAccount = getByLogin(login);
+        userAccount.setActive(false);
+        return userAccountRepository.save(userAccount);
     }
 
 }
