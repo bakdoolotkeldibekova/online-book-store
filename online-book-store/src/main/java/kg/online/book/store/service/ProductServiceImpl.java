@@ -88,4 +88,19 @@ public class ProductServiceImpl implements ProductService {
         product.setImage(image);
         return productRepository.save(product);
     }
+
+    @Override
+    public List<Product> getAllByName(String name) {
+        return productRepository.findAllByNameContainingIgnoringCase(name);
+    }
+
+    @Override
+    public List<Product> getAllByAuthorName(String authorName) {
+        return productRepository.findAllByAuthorNameContainingIgnoringCase(authorName);
+    }
+
+    @Override
+    public List<Product> getAllByGenreList(String genre) {
+        return productRepository.findAllByGenreListContainingIgnoringCase(genre);
+    }
 }

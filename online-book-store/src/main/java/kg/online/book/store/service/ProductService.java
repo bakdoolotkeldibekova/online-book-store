@@ -16,4 +16,8 @@ public interface ProductService {
     Product changeAvailable(Long productId, Boolean isAvailable);
     Product changeDiscount(Long productId, Integer discount);
     Product updateImage(Long productId, Image image);
+
+    List<Product> getAllByName(String name);
+    List<Product> getAllByAuthorName(String authorName);
+    List<Product> getAllByGenreList(String genre);
 }

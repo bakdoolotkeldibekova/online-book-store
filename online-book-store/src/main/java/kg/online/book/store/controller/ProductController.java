@@ -6,7 +6,6 @@ import kg.online.book.store.entity.Product;
 import kg.online.book.store.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,6 +18,21 @@ public class ProductController {
     @PostMapping
     public Product create(@RequestBody ProductDTO productDTO){
         return productService.create(productDTO);
+    }
+
+    @GetMapping("/name")
+    public List<Product> getAllByName(@RequestBody String name) {
+        return productService.getAllByName(name);
+    }
+
+    @GetMapping("/author_name")
+    public List<Product> getAllByAuthorName(@RequestBody String authorName) {
+        return productService.getAllByAuthorName(authorName);
+    }
+
+    @GetMapping("/genre")
+    public List<Product> getAllByGenreName(@RequestBody String genreName) {
+        return productService.getAllByGenreList(genreName);
     }
 
     @GetMapping("/{id}")
