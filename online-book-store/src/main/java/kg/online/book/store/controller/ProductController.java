@@ -20,17 +20,17 @@ public class ProductController {
         return productService.create(productDTO);
     }
 
-    @GetMapping("/name")
+    @PostMapping("/name")
     public List<Product> getAllByName(@RequestBody String name) {
         return productService.getAllByName(name);
     }
 
-    @GetMapping("/author_name")
+    @PostMapping("/author_name")
     public List<Product> getAllByAuthorName(@RequestBody String authorName) {
         return productService.getAllByAuthorName(authorName);
     }
 
-    @GetMapping("/genre")
+    @PostMapping("/genre")
     public List<Product> getAllByGenreName(@RequestBody String genreName) {
         return productService.getAllByGenreList(genreName);
     }
