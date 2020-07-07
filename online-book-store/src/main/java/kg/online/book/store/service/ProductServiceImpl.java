@@ -8,6 +8,7 @@ import kg.online.book.store.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -98,6 +99,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllByGenreList(String genre) {
-        return productRepository.findAllByGenreListContainingIgnoringCase(genre);
+        List<String> genreList = new ArrayList<>();
+        genreList.add(genre);
+        return productRepository.findAllByGenreListContainingIgnoringCase(genreList);
     }
 }
