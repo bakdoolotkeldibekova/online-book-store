@@ -32,7 +32,8 @@ public class Product extends BaseEntity {
     @Column(name = "available", nullable = false)
     private boolean available = true;
 
-    @ManyToMany
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "product_genre",
             joinColumns = {
             @JoinColumn(name = "product_id")
