@@ -31,15 +31,15 @@ public class Product extends BaseEntity {
     private boolean available = true;
 
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "product_genre",
-            joinColumns = {
-            @JoinColumn(name = "product_id")
-    },
-    inverseJoinColumns = {
-            @JoinColumn(name = "genre_id")
-    })
-    private List<Genre> genreList = new ArrayList<>();
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @JoinTable(name = "product_genre",
+//            joinColumns = {
+//            @JoinColumn(name = "product_id")
+//    },
+//    inverseJoinColumns = {
+//            @JoinColumn(name = "genre_id")
+//    })
+//    private List<Genre> genreList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
