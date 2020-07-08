@@ -33,4 +33,9 @@ public class GenreServiceImpl implements GenreService {
         genreRepository.deleteById(id);
         return genre;
     }
+
+    @Override
+    public Genre getByName(String name) {
+        return genreRepository.findByNameContainingIgnoringCase(name);
+    }
 }

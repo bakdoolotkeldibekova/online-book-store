@@ -2,6 +2,7 @@ package kg.online.book.store.service;
 
 import kg.online.book.store.dto.ProductDTO;
 import kg.online.book.store.entity.Author;
+import kg.online.book.store.entity.Genre;
 import kg.online.book.store.entity.Image;
 import kg.online.book.store.entity.Product;
 import kg.online.book.store.repository.ProductRepository;
@@ -21,6 +22,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private GenreService genreService;
 
     @Override
     public Product create(ProductDTO productDTO) {
@@ -90,17 +94,18 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-//    @Override
-//    public List<Product> getAllByNameOrAuthorName(String name) {
-//        List<Product> productList = productRepository.findAllByNameContainingIgnoringCase(name);
-//        productList.addAll(productRepository.findAllByAuthorNameContainingIgnoringCase(name));
-//        return productList;
-//    }
-//
-//    @Override
-//    public List<Product> getAllByGenreList(String genre) {
-//        List<String> genreList = new ArrayList<>();
-//        genreList.add(genre);
-//        return productRepository.findAllByGenreListContainingIgnoringCase(genreList);
-//    }
+    @Override
+    public List<Product> getAllByNameOrAuthorName(String name) {
+        List<Product> productList = productRepository.findAllByNameContainingIgnoringCase(name);
+        productList.addAll(productRepository.findAllByAuthorNameContainingIgnoringCase(name));
+        return productList;
+    }
+
+    @Override
+    public List<Product> getAllByGenreList(String genre) {
+        List<Genre> genreList = new ArrayList<>();
+        Genre genre1 = genreService.getByName(genre);
+        genreList.add(genre1);
+        return productRepository.findAllByGenreListIgnoringCase(genreList);
+    }
 }

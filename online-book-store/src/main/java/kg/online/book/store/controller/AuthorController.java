@@ -33,7 +33,7 @@ public class AuthorController {
         return authorService.getAllByBiography(biography);
     }
 
-    @GetMapping("/name")
+    @PostMapping("/name")
     public List<Author> getAllByName(@RequestBody String name){
         return authorService.getAllByName(name);
     }

@@ -9,4 +9,6 @@ public interface GenreService {
     Genre getById(Long id);
     List<Genre> getAll();
     Genre deleteById(Long id);
+
+    Genre getByName(String name);
 }
