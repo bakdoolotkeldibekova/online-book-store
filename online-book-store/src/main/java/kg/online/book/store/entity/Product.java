@@ -31,7 +31,7 @@ public class Product extends BaseEntity {
     private boolean available = true;
 
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "product_genre",
             joinColumns = {
             @JoinColumn(name = "product_id")
