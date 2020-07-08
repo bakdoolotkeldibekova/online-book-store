@@ -19,7 +19,7 @@ public class Genre extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "genres")
     private List<Product> productList = new ArrayList<>();
 
     public Genre(String name){
