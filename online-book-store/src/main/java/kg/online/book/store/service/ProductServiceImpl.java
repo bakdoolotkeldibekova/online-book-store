@@ -106,6 +106,6 @@ public class ProductServiceImpl implements ProductService {
         List<Genre> genreList = new ArrayList<>();
         Genre genre1 = genreService.getByName(genre);
         genreList.add(genre1);
-        return productRepository.findAllByGenreListIgnoringCase(genreList);
+        return productRepository.findAllByGenreList(genreList);
     }
 }
