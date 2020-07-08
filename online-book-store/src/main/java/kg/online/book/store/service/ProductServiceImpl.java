@@ -94,6 +94,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
+    @Override
+    public List<Product> getAllByName(String name) {
+        return productRepository.findAllByNameContainingIgnoringCase(name);
+    }
+
 //    @Override
 //    public List<Product> getAllByNameOrAuthorName(String name) {
 //        List<Product> productList = productRepository.findAllByNameContainingIgnoringCase(name);
@@ -101,11 +106,11 @@ public class ProductServiceImpl implements ProductService {
 //        return productList;
 //    }
 
-    @Override
-    public List<Product> getAllByGenreList(String genre) {
-        List<Genre> genreList = new ArrayList<>();
-        Genre genre1 = genreService.getByName(genre);
-        genreList.add(genre1);
-        return productRepository.findAllByGenreList(genreList);
-    }
+//    @Override
+//    public List<Product> getAllByGenreList(String genre) {
+//        List<Genre> genreList = new ArrayList<>();
+//        Genre genre1 = genreService.getByName(genre);
+//        genreList.add(genre1);
+//        return productRepository.findAllByGenreList(genreList);
+//    }
 }
