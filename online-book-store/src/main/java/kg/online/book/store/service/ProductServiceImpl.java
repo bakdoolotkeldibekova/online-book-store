@@ -5,13 +5,11 @@ import kg.online.book.store.entity.Author;
 import kg.online.book.store.entity.Genre;
 import kg.online.book.store.entity.Image;
 import kg.online.book.store.entity.Product;
-import kg.online.book.store.repository.GenreRepository;
 import kg.online.book.store.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -104,11 +102,15 @@ public class ProductServiceImpl implements ProductService {
         return productList;
     }
 
-//    @Override
-//    public List<Product> getAllByGenre(String genre) {
-//        List<Genre> genreList = new ArrayList<>();
-//        Genre genre1 = genreService.getByName(genre);
-//        genreList.add(genre1);
-//        return productRepository.findAllByGenreList(genreList);
-//    }
+    @Override
+    public List<Product> getAllByGenre(String genre) {
+        List<Product> productList = new ArrayList<>();
+        List<Genre> genreList = new ArrayList<>();
+
+        Genre genre1 = genreService.getByName(genre);
+        if (genre1 == null) return productList;
+
+        genreList.add(genre1);
+        return productRepository.findAllByGenreList(genreList);
+    }
 }
