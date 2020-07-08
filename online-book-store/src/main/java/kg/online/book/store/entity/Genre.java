@@ -19,4 +19,6 @@ public class Genre extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @ManyToMany(mappedBy = "genres")
+    private List<Product> productList;
 }

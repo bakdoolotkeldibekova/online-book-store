@@ -32,8 +32,8 @@ public class Product extends BaseEntity {
     @Column(name = "available", nullable = false)
     private boolean available = true;
 
-    @OneToMany
-    @JoinColumn(name = "genre_id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "genre_id")
     private List<Genre> genreList = new ArrayList<>();
 
     @ManyToOne
