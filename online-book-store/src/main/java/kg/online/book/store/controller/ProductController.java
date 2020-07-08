@@ -27,6 +27,7 @@ public class ProductController {
 
     @GetMapping("/genre")
     public List<Product> getAllByGenreName(@RequestBody String genreName) {
+        System.out.println("truueeeeeeeeeeeeeeeee");
         return productService.getAllByGenreList(genreName);
     }
 
