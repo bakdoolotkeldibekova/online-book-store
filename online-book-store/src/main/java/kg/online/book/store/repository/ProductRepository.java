@@ -12,4 +12,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByAuthorNameContainingIgnoringCase(String authorName);
 
     List<Product> findAllByPriceBetween(Double a, Double b);
+
 }

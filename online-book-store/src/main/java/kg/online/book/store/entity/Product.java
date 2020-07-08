@@ -33,7 +33,7 @@ public class Product extends BaseEntity {
     private boolean available = true;
 
     @OneToMany
-    @JoinColumn(name = "genre_id", nullable = false)
+    @JoinColumn(name = "genre_id")
     private List<Genre> genreList = new ArrayList<>();
 
     @ManyToOne
