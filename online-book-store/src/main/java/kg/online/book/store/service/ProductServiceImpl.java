@@ -90,17 +90,17 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-    @Override
-    public List<Product> getAllByNameOrAuthorName(String name) {
-        List<Product> productList = productRepository.findAllByNameContainingIgnoringCase(name);
-        productList.addAll(productRepository.findAllByAuthorNameContainingIgnoringCase(name));
-        return productList;
-    }
-
-    @Override
-    public List<Product> getAllByGenreList(String genre) {
-        List<String> genreList = new ArrayList<>();
-        genreList.add(genre);
-        return productRepository.findAllByGenreListContainingIgnoringCase(genreList);
-    }
+//    @Override
+//    public List<Product> getAllByNameOrAuthorName(String name) {
+//        List<Product> productList = productRepository.findAllByNameContainingIgnoringCase(name);
+//        productList.addAll(productRepository.findAllByAuthorNameContainingIgnoringCase(name));
+//        return productList;
+//    }
+//
+//    @Override
+//    public List<Product> getAllByGenreList(String genre) {
+//        List<String> genreList = new ArrayList<>();
+//        genreList.add(genre);
+//        return productRepository.findAllByGenreListContainingIgnoringCase(genreList);
+//    }
 }
