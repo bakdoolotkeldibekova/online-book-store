@@ -21,4 +21,8 @@ public class Genre extends BaseEntity {
 
     @ManyToMany(mappedBy = "genres")
     private List<Product> productList;
+
+    public Genre(String name){
+        this.name = name;
+    }
 }
