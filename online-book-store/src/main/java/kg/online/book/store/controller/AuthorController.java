@@ -28,13 +28,13 @@ public class AuthorController {
         return authorService.getAll();
     }
 
-    @GetMapping("/biography")
-    public List<Author> getAllByBiography(@RequestBody String biography){
+    @GetMapping("/biography/{biography}")
+    public List<Author> getAllByBiography(@PathVariable String biography){
         return authorService.getAllByBiography(biography);
     }
 
-    @GetMapping("/name")
-    public List<Author> getAllByName(@RequestBody String name){
+    @GetMapping("/name/{name}")
+    public List<Author> getAllByName(@PathVariable String name){
         return authorService.getAllByName(name);
     }
 
