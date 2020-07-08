@@ -32,12 +32,12 @@ public class Product extends BaseEntity {
     @Column(name = "available", nullable = false)
     private boolean available = true;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(joinColumns = {
-            @JoinColumn(name = "product_id", nullable = false)
+            @JoinColumn(name = "product_id")
     },
     inverseJoinColumns = {
-            @JoinColumn(name = "genre_id", nullable = false)
+            @JoinColumn(name = "genre_id")
     })
     private List<Genre> genreList = new ArrayList<>();
 
