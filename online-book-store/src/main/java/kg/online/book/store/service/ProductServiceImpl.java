@@ -102,9 +102,9 @@ public class ProductServiceImpl implements ProductService {
         return productList;
     }
 
-    @Override
-    public List<Product> getAllByGenre(String genre) {
-        List<Product> productList = new ArrayList<>();
+//    @Override
+//    public List<Product> getAllByGenre(String genre) {
+//        List<Product> productList = new ArrayList<>();
 //        List<Genre> genreList = new ArrayList<>();
 //
 //        Genre genre1 = genreService.getByName(genre);
@@ -112,6 +112,5 @@ public class ProductServiceImpl implements ProductService {
 //
 //        genreList.add(genre1);
 //        return productRepository.findAllByGenreList(genreList);
-        return productList;
-    }
+//    }
 }
