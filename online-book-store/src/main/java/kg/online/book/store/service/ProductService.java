@@ -17,6 +17,6 @@ public interface ProductService {
     Product updateImage(Long productId, Image image);
 
     List<Product> getAllByNameOrAuthorName(String name);
-    List<Product> getAllByGenreList(String genre);
+  //  List<Product> getAllByGenre(String genre);
 
 }
