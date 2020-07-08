@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -21,7 +22,9 @@ public class Genre extends BaseEntity {
 
 //    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 //    private List<Product> productList = new ArrayList<>();
-//
+
+    @ManyToMany(mappedBy = "genres")
+    Set<Product> productSet;
 //    public Genre(String name){
 //        this.name = name;
 //    }
