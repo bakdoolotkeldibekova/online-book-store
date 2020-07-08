@@ -102,6 +102,11 @@ public class ProductServiceImpl implements ProductService {
         return productList;
     }
 
+    @Override
+    public List<Product> getAllByPriceBetween(Double a, Double b) {
+        return productRepository.findAllByPriceBetween(a, b);
+    }
+
 //    @Override
 //    public List<Product> getAllByGenre(String genre) {
 //        List<Product> productList = new ArrayList<>();

@@ -32,7 +32,7 @@ public class Product extends BaseEntity {
     @Column(name = "available", nullable = false)
     private boolean available = true;
 
-    @ManyToMany
+    @OneToMany
     @JoinColumn(name = "genre_id", nullable = false)
     private List<Genre> genreList = new ArrayList<>();
 

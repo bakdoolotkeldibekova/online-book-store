@@ -19,4 +19,5 @@ public interface ProductService {
     List<Product> getAllByNameOrAuthorName(String name);
 //    List<Product> getAllByGenre(String genre);
 
+    List<Product> getAllByPriceBetween(Double a, Double b);
 }

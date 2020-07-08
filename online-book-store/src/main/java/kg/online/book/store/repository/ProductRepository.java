@@ -11,6 +11,6 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByNameContainingIgnoringCase(String name);
     List<Product> findAllByAuthorNameContainingIgnoringCase(String authorName);
-//    List<Product> findAllByGenreList(List<Genre> genreList);
 
+    List<Product> findAllByPriceBetween(Double a, Double b);
 }

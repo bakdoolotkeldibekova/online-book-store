@@ -20,6 +20,11 @@ public class ProductController {
         return productService.create(productDTO);
     }
 
+    @GetMapping("/price/{a}/{b}")
+    public List<Product> getAllByPriceBetween(@PathVariable Double a, @PathVariable Double b) {
+        return productService.getAllByPriceBetween(a, b);
+    }
+
     @GetMapping("/name_and_author/{name}")
     public List<Product> getAllByNameOrAuthorName(@PathVariable String name) {
         return productService.getAllByNameOrAuthorName(name);
