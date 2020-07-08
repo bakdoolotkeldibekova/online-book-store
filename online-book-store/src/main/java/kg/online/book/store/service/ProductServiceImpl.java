@@ -105,12 +105,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllByGenre(String genre) {
         List<Product> productList = new ArrayList<>();
-        List<Genre> genreList = new ArrayList<>();
-
-        Genre genre1 = genreService.getByName(genre);
-        if (genre1 == null) return productList;
-
-        genreList.add(genre1);
-        return productRepository.findAllByGenreList(genreList);
+//        List<Genre> genreList = new ArrayList<>();
+//
+//        Genre genre1 = genreService.getByName(genre);
+//        if (genre1 == null) return productList;
+//
+//        genreList.add(genre1);
+//        return productRepository.findAllByGenreList(genreList);
+        return productList;
     }
 }
