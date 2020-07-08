@@ -20,10 +20,4 @@ public class Genre extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "genre")
-    private List<Product> productList = new ArrayList<>();
-
-    public Genre(String name){
-        this.name = name;
-    }
 }
