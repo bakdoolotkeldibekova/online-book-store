@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -106,6 +107,6 @@ public class ProductServiceImpl implements ProductService {
         List<Genre> genreList = new ArrayList<>();
         Genre genre1 = genreService.getByName(genre);
         genreList.add(genre1);
-        return productRepository.findAllByGenreList(genreList);
+        return productRepository.findAllByGenreListIn(Collections.singleton(genreList));
     }
 }
