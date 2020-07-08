@@ -20,5 +20,5 @@ public interface ProductService {
    // List<Product> getAllByNameOrAuthorName(String name);
    // List<Product> getAllByGenreList(String genre);
 
-     List<Product> getAllByName(String name);
+    // List<Product> getAllByName(String name);
 }

@@ -94,10 +94,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-    @Override
-    public List<Product> getAllByName(String name) {
-        return productRepository.findAllByNameContainingIgnoringCase(name);
-    }
+//    @Override
+//    public List<Product> getAllByName(String name) {
+//        return productRepository.findAllByNameContainingIgnoringCase(name);
+//    }
 
 //    @Override
 //    public List<Product> getAllByNameOrAuthorName(String name) {
