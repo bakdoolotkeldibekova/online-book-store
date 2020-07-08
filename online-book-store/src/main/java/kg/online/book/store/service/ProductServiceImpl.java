@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
             product.setAuthor(author);
             product.setAvailable(productDTO.isAvailable());
             product.setDescription(productDTO.getDescription());
-            product.setGenreList(productDTO.getGenreList());
+            product.setGenre(productDTO.getGenre());
             product.setName(productDTO.getName());
             product.setPrice(productDTO.getPrice());
             product.setDiscount(productDTO.getDiscount());
@@ -107,15 +107,4 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllByPriceBetween(a, b);
     }
 
-//    @Override
-//    public List<Product> getAllByGenre(String genre) {
-//        List<Product> productList = new ArrayList<>();
-//        List<Genre> genreList = new ArrayList<>();
-//
-//        Genre genre1 = genreService.getByName(genre);
-//        if (genre1 == null) return productList;
-//
-//        genreList.add(genre1);
-//        return productRepository.findAllByGenreList(genreList);
-//    }
 }

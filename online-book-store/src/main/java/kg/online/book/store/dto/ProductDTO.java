@@ -20,7 +20,7 @@ public class ProductDTO {
     private Double price;
     private String description;
     private boolean available = true;
-    private List<Genre> genreList = new ArrayList<>();
+    private Genre genre;
     private Long authorId;
     private Integer discount=0;
     private Image image;
