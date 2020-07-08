@@ -30,11 +30,10 @@ public class ProductController {
         return productService.getAllByNameOrAuthorName(name);
     }
 
-//    @GetMapping("/genre/{genreName}")
-//    public List<Product> getAllByGenreName(@PathVariable String genreName) {
-//        System.out.println("truueeeeeeeeeeeeeeeee");
-//        return productService.getAllByGenre(genreName);
-//    }
+    @GetMapping("/genre/{genreName}")
+    public List<Product> getAllByGenreName(@PathVariable String genreName) {
+        return productService.getAllByGenreName(genreName);
+    }
 
     @GetMapping("/{id}")
     public Product getById(@PathVariable Long id){

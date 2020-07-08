@@ -2,14 +2,12 @@ package kg.online.book.store.service;
 
 import kg.online.book.store.dto.ProductDTO;
 import kg.online.book.store.entity.Author;
-import kg.online.book.store.entity.Genre;
 import kg.online.book.store.entity.Image;
 import kg.online.book.store.entity.Product;
 import kg.online.book.store.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,10 +20,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ImageService imageService;
-
-    @Autowired
-    private GenreService genreService;
-
 
     @Override
     public Product create(ProductDTO productDTO) {
@@ -105,6 +99,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllByPriceBetween(Double a, Double b) {
         return productRepository.findAllByPriceBetween(a, b);
+    }
+
+    @Override
+    public List<Product> getAllByGenreName(String name) {
+        return productRepository.findAllByGenre_NameContainingIgnoringCase(name);
     }
 
 }
