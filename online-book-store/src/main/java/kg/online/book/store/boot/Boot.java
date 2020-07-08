@@ -1,28 +1,28 @@
 package kg.online.book.store.boot;
 
-import kg.online.book.store.dto.ContactsDTO;
-import kg.online.book.store.entity.*;
-import kg.online.book.store.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
+//import kg.online.book.store.dto.ContactsDTO;
+//import kg.online.book.store.entity.*;
+//import kg.online.book.store.service.*;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Boot implements CommandLineRunner {
-    @Autowired
-    private UserAccountService userService;
-    @Autowired
-    private RoleService userRoleService;
-    @Autowired
-    private GenreService genreService;
-    @Autowired
-    private AuthorService authorService;
-    @Autowired
-    private PaymentMethodService paymentMethodService;
-    @Autowired
-    private DeliveryMethodService deliveryMethodService;
-    @Autowired
-    private ContactsService contactsService;
+//    @Autowired
+//    private UserAccountService userService;
+//    @Autowired
+//    private RoleService userRoleService;
+//    @Autowired
+//    private GenreService genreService;
+//    @Autowired
+//    private AuthorService authorService;
+//    @Autowired
+//    private PaymentMethodService paymentMethodService;
+//    @Autowired
+//    private DeliveryMethodService deliveryMethodService;
+//    @Autowired
+//    private ContactsService contactsService;
 
     @Override
     public void run(String... args) throws Exception {
