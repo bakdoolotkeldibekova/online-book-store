@@ -99,12 +99,12 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllByNameContainingIgnoringCase(name);
     }
 
-//    @Override
-//    public List<Product> getAllByNameOrAuthorName(String name) {
-//        List<Product> productList = productRepository.findAllByNameContainingIgnoringCase(name);
-//        productList.addAll(productRepository.findAllByAuthorNameContainingIgnoringCase(name));
-//        return productList;
-//    }
+    @Override
+    public List<Product> getAllByNameOrAuthorName(String name) {
+        List<Product> productList = productRepository.findAllByNameContainingIgnoringCase(name);
+        productList.addAll(productRepository.findAllByAuthorNameContainingIgnoringCase(name));
+        return productList;
+    }
 
 //    @Override
 //    public List<Product> getAllByGenreList(String genre) {

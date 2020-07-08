@@ -25,10 +25,10 @@ public class ProductController {
         return productService.getAllByName(name);
     }
 
-//    @GetMapping("/name/{name}")
-//    public List<Product> getAllByNameOrAuthorName(@PathVariable String name) {
-//        return productService.getAllByNameOrAuthorName(name);
-//    }
+    @GetMapping("/name_and_author")
+    public List<Product> getAllByNameOrAuthorName(@RequestBody String name) {
+        return productService.getAllByNameOrAuthorName(name);
+    }
 
 //    @GetMapping("/genre/{genreName}")
 //    public List<Product> getAllByGenreName(@PathVariable String genreName) {
