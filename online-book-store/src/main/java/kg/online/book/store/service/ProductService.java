@@ -4,7 +4,6 @@ import kg.online.book.store.dto.ProductDTO;
 import kg.online.book.store.entity.Image;
 import kg.online.book.store.entity.Product;
 
-import java.awt.*;
 import java.util.List;
 
 public interface ProductService {
@@ -20,5 +19,5 @@ public interface ProductService {
    // List<Product> getAllByNameOrAuthorName(String name);
    // List<Product> getAllByGenreList(String genre);
 
-    // List<Product> getAllByName(String name);
+     List<Product> getAllByName(String name);
 }

@@ -20,10 +20,11 @@ public class ProductController {
         return productService.create(productDTO);
     }
 
-//    @GetMapping("/name/{name}")
-//    public List<Product> getAllByName(@PathVariable String name) {
-//        return productService.getAllByName(name);
-//    }
+    @GetMapping("/name")
+    public List<Product> getAllByName(@RequestBody String name) {
+        return productService.getAllByName(name);
+    }
+
 //    @GetMapping("/name/{name}")
 //    public List<Product> getAllByNameOrAuthorName(@PathVariable String name) {
 //        return productService.getAllByNameOrAuthorName(name);
