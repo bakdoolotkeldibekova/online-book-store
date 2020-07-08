@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -30,21 +28,9 @@ public class Product extends BaseEntity {
     @Column(name = "available", nullable = false)
     private boolean available = true;
 
-
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JoinTable(name = "product_genre",
-//            joinColumns = {
-//            @JoinColumn(name = "product_id")
-//    },
-//    inverseJoinColumns = {
-//            @JoinColumn(name = "genre_id")
-//    })
-//    private List<Genre> genreList = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(name = "product_genre", joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private Set<Genre> genreSet;
+    @ManyToOne
+    @JoinColumn(name = "genre_id", nullable = false)
+    private Genre genre;
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
