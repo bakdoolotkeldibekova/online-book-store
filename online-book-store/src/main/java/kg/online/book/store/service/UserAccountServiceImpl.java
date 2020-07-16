@@ -81,9 +81,9 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public UserAccount doAnActive(String login) {
+    public UserAccount isActive(String login, Boolean isActive) {
         UserAccount userAccount = getByLogin(login);
-        userAccount.setActive(false);
+        userAccount.setActive(isActive);
         return userAccountRepository.save(userAccount);
     }
 

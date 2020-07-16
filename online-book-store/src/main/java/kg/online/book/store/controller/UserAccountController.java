@@ -23,8 +23,8 @@ public class UserAccountController {
         return userAccountService.getAll();
     }
 
-    @PutMapping
-    public UserAccount doAnActive(@RequestBody String login){
-        return userAccountService.doAnActive(login);
+    @PutMapping(/{isActive})
+    public UserAccount isActive(@RequestBody String login, @PathVariable Boolean  isActive){
+        return userAccountService.isActive(login, isActive);
     }
 }
