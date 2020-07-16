@@ -44,8 +44,8 @@ public class BillController {
         return billService.getAllByPayed(payed);
     }
 
-    @GetMapping("/user")
-    public Bill getByUserLogin(@RequestBody String userLogin){
+    @GetMapping("/user/{userLogin}")
+    public Bill getByUserLogin(@PathVariable String userLogin){
         return billService.getByUserLogin(userLogin);
     }
 
