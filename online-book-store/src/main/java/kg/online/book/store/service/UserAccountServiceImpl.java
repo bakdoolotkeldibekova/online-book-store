@@ -94,6 +94,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public String forgotMyPassword(String login) {
         UserAccount userAccount = getByLogin(login);
+        if(userAccount == null) return "ne poluchilos'";
 
         final String TEXT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
         StringBuilder builder = new StringBuilder();
