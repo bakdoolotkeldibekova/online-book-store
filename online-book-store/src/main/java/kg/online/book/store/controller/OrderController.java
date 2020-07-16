@@ -40,8 +40,8 @@ public class OrderController {
         return orderService.getByLogin(login);
     }
 
-    @GetMapping("/products_cost")
-    public List<Order> getAllByProductsCost(@RequestBody Double a, @RequestBody Double b){
+    @GetMapping("/products_cost/{a}/{b}")
+    public List<Order> getAllByProductsCost(@PathVariable Double a, @PathVariable Double b){
         return orderService.getAllByProductCostBetween(a, b);
     }
 
