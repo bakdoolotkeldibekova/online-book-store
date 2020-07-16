@@ -23,7 +23,7 @@ public class UserAccountController {
         return userAccountService.getAll();
     }
 
-    @PutMapping(/{isActive})
+    @PutMapping("/{isActive}")
     public UserAccount isActive(@RequestBody String login, @PathVariable Boolean  isActive){
         return userAccountService.isActive(login, isActive);
     }
