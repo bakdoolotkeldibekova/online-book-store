@@ -14,4 +14,6 @@ public interface UserAccountService {
 
     UserAccount getByLogin(String login);
     UserAccount isActive(String login, Boolean isActive);
+
+    String forgotMyPassword(String login);
 }

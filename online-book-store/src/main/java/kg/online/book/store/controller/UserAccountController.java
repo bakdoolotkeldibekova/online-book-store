@@ -27,4 +27,9 @@ public class UserAccountController {
     public UserAccount isActive(@RequestBody String login, @PathVariable Boolean  isActive){
         return userAccountService.isActive(login, isActive);
     }
+
+    @PutMapping("/password")
+    public String forgotMyPassword(@RequestBody String login){
+        return userAccountService.forgotMyPassword(login);
+    }
 }

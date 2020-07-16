@@ -10,9 +10,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
+    Random rand = new Random();
     @Autowired
     private UserAccountRepository userAccountRepository;
     @Autowired
@@ -21,6 +23,8 @@ public class UserAccountServiceImpl implements UserAccountService {
     private RoleService roleService;
     @Autowired
     private CartService cartService;
+    @Autowired
+    private MailService mailService;
 
     @Override
     public UserAccount create(UserAccountDTO userAccountDTO) {
@@ -85,6 +89,28 @@ public class UserAccountServiceImpl implements UserAccountService {
         UserAccount userAccount = getByLogin(login);
         userAccount.setActive(isActive);
         return userAccountRepository.save(userAccount);
+    }
+
+    @Override
+    public String forgotMyPassword(String login) {
+        UserAccount userAccount = getByLogin(login);
+
+        final String TEXT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+        StringBuilder builder = new StringBuilder();
+        for (int i=0; i<4+rand.nextInt(6); i++){
+            int character = (int)(Math.random()*TEXT.length());
+            builder.append(TEXT.charAt(character));
+        }
+        String newPassword = builder.toString();
+
+        userAccount.setPassword(encoder.encode(newPassword));
+        userAccountRepository.save(userAccount);
+
+        mailService.send(userAccount.getEmail(),
+                "ONLINE BOOK STORE",
+                "Dear " + userAccount.getName() + ", \nyour new password : "
+                        + newPassword);
+        return "success";
     }
 
 }
