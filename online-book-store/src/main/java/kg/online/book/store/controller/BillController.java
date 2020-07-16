@@ -14,8 +14,8 @@ public class BillController {
     @Autowired
     private BillService billService;
 
-    @PutMapping
-    public Bill updatePayed(@RequestBody Long billId, @RequestBody Boolean payed){
+    @PutMapping("/{billId}/{payed}")
+    public Bill updatePayed(@PathVariable Long billId, @PathVariable Boolean payed){
         return billService.updatePayed(billId, payed);
     }
 
